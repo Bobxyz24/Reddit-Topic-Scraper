@@ -1,0 +1,15 @@
+# reddit_scraper.py
+
+import praw
+
+def get_top_posts(subreddit, limit=5):
+    reddit = praw.Reddit(
+        client_id="your_client_id",
+        client_secret="your_client_secret",
+        user_agent="reddit_scraper"
+    )
+    posts = reddit.subreddit(subreddit).hot(limit=limit)
+    return [(post.title, post.url) for post in posts]
+
+# Sample usage
+print(get_top_posts("Python"))
